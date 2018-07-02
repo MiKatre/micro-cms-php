@@ -14,7 +14,7 @@ function post() {
 
   $post = $postManager->getPost($_GET['id']);
   $comments = $commentManager->getComments($_GET['id']);
-  
+
   require('view/frontend/postView.php');
 }
 
@@ -22,7 +22,7 @@ function addComment($postId, $author, $comment) {
 
   $commentManager = new CommentManager();
 
-  $affectedLines = $commentManager->postComment($postId, $author, $comment); // retunr int or false
+  $affectedLines = $commentManager->postComment($postId, $author, $comment); // return int or false
   if ($affectedLines == false) {
     die('impossible d\'ajouter le commentaire !');
     throw new Exception('impossible d\'ajouter le commentaire !');
