@@ -2,17 +2,17 @@
 <?php $title = htmlspecialchars($post['title']); ?>
 
 <?php ob_start(); ?>
-<h1>Jean Forteroche</h1>
-<h4 class="text-muted">Billet simple pour l'Alaska</h4>
+<h3 class="font-weight-bold">Jean Forteroche</h3>
+<h6 class="text-muted">Billet simple pour l'Alaska</h6>
 <p><a href="index.php">Retour à la liste des articles</a></p>
 
 <div class="news">
     <small class="text-muted">
         <?= strftime("%A %d %B %Y", strtotime($post['date'])) ?>
     </small>
-    <h3>
+    <h2 >
         <?= htmlspecialchars($post['title']) ?>
-    </h3>
+    </h2>
     
     <p>
         <?= nl2br(htmlspecialchars($post['content'])) ?>

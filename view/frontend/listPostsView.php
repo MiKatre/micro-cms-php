@@ -1,6 +1,6 @@
 <?php $title = 'Blog de Jean Forteroche'; ?>
 <?php ob_start(); ?>
-<h1>Jean Forteroche</h1>
+<h1 class="font-weight-bold">Jean Forteroche</h1>
 <h4 class="text-muted">Billet simple pour l'Alaska</h4>
 
 <p class="lead mt-3">Derniers billets du blog :</p>
