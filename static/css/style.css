@@ -4,6 +4,12 @@ h3 {}
 
 a {}
 
+#main {
+  max-width: 670px;
+  margin: auto;
+  padding: auto 5px;
+}
+
 .news {}
 
 .news p {}

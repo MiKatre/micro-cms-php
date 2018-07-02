@@ -5,6 +5,7 @@ require_once('model/CommentManager.php');
 function listPosts() {
   $postManager = new PostManager();
   $posts = $postManager->getPosts();
+
   require('view/frontend/listPostsView.php');
 }
 
