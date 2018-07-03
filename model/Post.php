@@ -1,11 +1,11 @@
 <?php 
 
 class Post {
-  private $_id;
-  private $_title;
-  private $_content;
-  private $_date;
-  private $_published;
+  private $_id,
+          $_title,
+          $_content,
+          $_date,
+          $_published;
 
   public function hydrate(array $data) {
     foreach($data as $key => $value) {

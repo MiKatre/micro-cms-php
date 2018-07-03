@@ -1,13 +1,13 @@
 <?php 
 
 class Comment {
-  private $_id;
-  private $_postId;
-  private $_author;
-  private $_content;
-  private $_date;
-  private $_responseId;
-  private $_approved;
+  private $_id,
+          $_postId,
+          $_author,
+          $_content,
+          $_date,
+          $_responseId,
+          $_approved;
 
   public function hydrate(array $data) {
     foreach($data as $key => $value) {
