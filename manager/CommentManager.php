@@ -1,6 +1,6 @@
 <?php
 
-require_once("model/Manager.php");
+require_once("manager/Manager.php");
 
 class CommentManager extends Manager {
   public function getComments($postId) {

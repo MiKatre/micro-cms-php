@@ -1,5 +1,5 @@
 <?php setlocale(LC_TIME, "fr_FR");?>
-<?php $title = htmlspecialchars($post['title']); ?>
+<?php $title = htmlspecialchars($post->title()); ?>
 
 <?php ob_start(); ?>
 <h3 class="font-weight-bold">Jean Forteroche</h3>
@@ -8,14 +8,14 @@
 
 <div class="news">
     <small class="text-muted">
-        <?= strftime("%A %d %B %Y", strtotime($post['date'])) ?>
+        <?= strftime("%A %d %B %Y", strtotime($post->date())) ?>
     </small>
     <h2 >
-        <?= htmlspecialchars($post['title']) ?>
+        <?= htmlspecialchars($post->title()) ?>
     </h2>
     
     <p>
-        <?= nl2br(htmlspecialchars($post['content'])) ?>
+        <?= nl2br(htmlspecialchars($post->content())) ?>
     </p>
 </div>
 
@@ -36,7 +36,7 @@ while ($comment = $comments->fetch())
 
 <h2 class="my-5 text-center font-weight-bold">Ajouter un commentaire</h2>
 
-<form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
+<form action="index.php?action=addComment&amp;id=<?= $post->id() ?>" method="post">
     <div>
         <label for="author">Auteur</label><br />
         <input type="text" id="author" name="author" />

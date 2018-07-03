@@ -1,6 +1,6 @@
 <?php 
-require_once('model/PostManager.php');
-require_once('model/CommentManager.php');
+require_once('manager/PostManager.php');
+require_once('manager/CommentManager.php');
 
 function listPosts() {
   $postManager = new PostManager();

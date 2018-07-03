@@ -8,25 +8,22 @@
 <?php require_once('helpers/helpers.php'); ?>
 
 <?php
-while ($data = $posts->fetch())
+foreach($posts as $post)
 {
 ?>
     <div class="news">
         <h3 class="mb-0">
-            <a href="index.php?action=post&amp;id=<?= $data['id'] ?>">
-                <?= htmlspecialchars($data['title']) ?>
+            <a href="index.php?action=post&amp;id=<?= $post->id(); ?>">
+                <?= htmlspecialchars($post->title()) ?>
             </a>
         </h3>
         <?php setlocale(LC_TIME, "fr_FR");?>
-        <small class="text-muted"><?= strftime("%A %d %B %Y", strtotime($data['date'])) ?></small>
+        <small class="text-muted"><?= strftime("%A %d %B %Y", strtotime($post->date())) ?></small>
         <p class="mt-1">
-            <?= htmlspecialchars(getExcerpt($data['content'])) ?>
+            <?= htmlspecialchars(getExcerpt($post->content())) ?>
         </p>
     </div>
-<?php
-}
-$posts->closeCursor();
-?>
+<?php } ?>
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>
