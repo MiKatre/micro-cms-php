@@ -22,14 +22,14 @@
 <h2 class="my-5 text-center font-weight-bold">Commentaires</h2>
 
 <?php
-while ($comment = $comments->fetch())
+foreach($comments as $comment)
 {
 ?>
     <p>
-        <strong><?= htmlspecialchars($comment['author']) ?></strong> 
-        <small> - <?= strftime("%A %d %B %Y", strtotime($comment['date'])) ?> </small>
+        <strong><?= htmlspecialchars($comment->author()) ?></strong> 
+        <small> - <?= strftime("%A %d %B %Y", strtotime($comment->date())) ?> </small>
     </p>
-    <p class="font-weight-light"><?= nl2br(htmlspecialchars($comment['content'])) ?></p>
+    <p class="font-weight-light"><?= nl2br(htmlspecialchars($comment->content())) ?></p>
 <?php
 }
 ?>
