@@ -2,7 +2,10 @@ h1, h3 {}
 
 h3 {}
 
-a {}
+h3 a {
+  font-weight: 900;
+  color: #252525;
+}
 
 #main {
   max-width: 670px;
@@ -13,3 +16,4 @@ a {}
 .news {}
 
 .news p {}
+
