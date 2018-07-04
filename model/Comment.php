@@ -1,5 +1,4 @@
 <?php 
-
 class Comment {
   private $_id,
           $_postId,
@@ -9,6 +8,13 @@ class Comment {
           $_responseId,
           $_approved;
 
+
+  public function __construct($data = null){
+    if(!empty($data)) {
+      $this->hydrate($data);
+    }
+  }
+  
   public function hydrate(array $data) {
     foreach($data as $key => $value) {
       $method = 'set'.ucfirst($key);
@@ -29,25 +35,54 @@ class Comment {
   public function approved(){return $this->_approved;}
 
   // setter methods
-  public function setId($id){
+  public function setId(int $id){
+    if (!is_int($id)) {
+      trigger_error('Wrong id type. Must be an integer', E_USER_WARNING);
+      return;
+    }
     $this->_id = $id;
   }
-  public function setPostId($_postId){
+  public function setPostId(int $_postId){
+    if (!is_int($id)) {
+      trigger_error('Wrong id type. Must be an integer', E_USER_WARNING);
+      return;
+    }
     $this->_postId = $postId;
   }
   public function setAuthor($author){
+    if(!is_string($author)){
+      trigger_error('Wrong author type. Must be a string', E_USER_WARNING);
+      return;
+    }
     $this->_author = $author;
   }
   public function setContent($content){
+    if(!is_string($content)){
+      trigger_error('Wrong content type. Must be a string', E_USER_WARNING);
+      return;
+    }
     $this->_content = $content;
   }
   public function setDate($date){
+    if(!is_string($date)){
+      trigger_error('Wrong date type. Must be a string', E_USER_WARNING);
+      return;
+    }
     $this->_date = $date;
   }
   public function setResponseId($responseId){
-    $this->_responseId = $responseId;
+    if ($responseId == null) {
+      $this->_responseId = $responseId;
+    } elseif((int) is_int($responseId)){
+      $this->_responseId = (int) $responseId;
+    } else {
+      trigger_error('Wrong ResponseId type. Must be null or int', E_USER_WARNING);
+      return;
+    }
   }
   public function setApproved($approved){
     $this->_approved = $approved;
   }
 }
+
+// Typechecking date

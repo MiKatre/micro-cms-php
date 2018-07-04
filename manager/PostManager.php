@@ -17,9 +17,7 @@ class PostManager extends Manager{
     $query = $this->_db->query('SELECT id,title,content,published,date FROM post WHERE published = 1 ORDER BY id DESC LIMIT 5');
     
     while ($postData = $query->fetch()) {
-      $newPost = new Post();
-      $newPost->hydrate($postData);
-      $posts[] = $newPost;
+      $posts[] = new Post($postData);
     }
 
     return $posts;

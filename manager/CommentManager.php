@@ -17,9 +17,7 @@ class CommentManager extends Manager {
     $query->execute(array($postId));
   
     while($commentData = $query->fetch()){
-      $comment = new Comment();
-      $comment->hydrate($commentData);
-      $comments[] = $comment;
+      $comments[] = new Comment($commentData);
     }
 
     return $comments;
