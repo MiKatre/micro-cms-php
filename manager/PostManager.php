@@ -27,8 +27,6 @@ class PostManager extends Manager{
     $req = $this->_db->prepare('SELECT id,title,content,date FROM post WHERE id = ?');
     $req->execute(array($postId));
     $postData = $req->fetch();
-    $post = new Post();
-    $post->hydrate($postData);
-    return $post;
+    return new Post($postData);
   }
 }
