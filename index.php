@@ -1,5 +1,6 @@
 <?php
 require('controller/frontend.php');
+require('controller/backend.php');
 
 try {
   if (isset($_GET['action'])) {
@@ -33,8 +34,8 @@ try {
         throw new Exception('Impossible de signaler ce commentaire');
       }
     }
-    elseif ($_GET['action'] == 'login') {
-      
+    elseif ($_GET['action'] == 'showLogin') {
+      showLogin();
     }
   } else {
     listPosts();
