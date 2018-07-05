@@ -10,7 +10,11 @@
     <input type="email" id="inputEmail" class="form-control" placeholder="Addresse Email" required autofocus>
     <label for="inputPassword" class="sr-only">Mot de Passe</label>
     <input type="password" id="inputPassword" class="form-control" placeholder="Mot de Passe" required>
-    
+    <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Se souvenir de moi
+        </label>
+      </div>
     <button class="btn btn-lg btn-success btn-block" type="submit">Connexion</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
   </form>
