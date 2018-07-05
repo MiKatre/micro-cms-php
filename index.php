@@ -37,6 +37,18 @@ try {
     elseif ($_GET['action'] == 'showLogin') {
       showLogin();
     }
+    elseif ($_GET['action'] == 'login') {
+      if(isset($_POST['email']) && isset($_POST['password'])) {
+        if(!empty($_POST['email']) && !empty($_POST['password'])) {
+          $rememberMe = (isset($_POST['rememberMe']) ? true : false );
+          login($_POST['email'], $_POST['password'], $rememberMe);
+        } else {
+          throw new Exception('You should provide both an email and a passord');
+        }
+      } else {
+        throw new Exception('You should provide both an email and a passord');
+      }
+    }
   } else {
     listPosts();
   }
