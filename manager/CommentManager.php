@@ -23,10 +23,20 @@ class CommentManager extends Manager {
     return $comments;
   }
   
-  public function postComment($postId, $author, $content, $responseId = null ) {
-    $comments = $this->_db->prepare('INSERT INTO comment(postId, author, content,responseId, date) VALUES(?,?,?,?,NOW())');
-    $affectedLines = $comments->execute(array($postId, $author, $content, $responseId));
+  public function postComment(Comment $comment) {
+    $comments = $this->_db->prepare('INSERT INTO comment(postId, author, email, content,responseId, date) VALUES(?,?,?,?,?,NOW())');
+    $affectedLines = $comments->execute(array($comment->postId(), $comment->author(), $comment->email(), $comment->content(), $comment->responseId()));
   
     return $affectedLines;
   }
+
+  public function flag($commentId) {
+    $comment = $this->_db->prepare('UPDATE comment SET flagged = 1 WHERE id = ?');
+
+    $affectedLines = $comment->execute(array($commentId));
+
+    return $affectedLines;
+  }
+
+  public function delete(Comment $comment){}
 }

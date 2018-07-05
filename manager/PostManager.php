@@ -29,4 +29,8 @@ class PostManager extends Manager{
     $postData = $req->fetch();
     return new Post($postData);
   }
+  
+  public function add(Post $post){}
+  public function update(Post $post){}
+  public function delete(Post $post){}
 }

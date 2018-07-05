@@ -13,6 +13,38 @@ h3 a {
   padding: auto 5px;
 }
 
+.icon:hover {
+  fill: #0056b3;
+  cursor: pointer;
+}
+
+.response {
+  float: right;
+  margin: -5px 20px 0 0;
+  fill:#212529;
+}
+
+.response:hover {
+  float: right;
+  margin: -5px 20px 0 0;
+  fill:#05ac2f;
+}
+
+.flag:hover {
+  fill: #f12400;
+}
+
+.flag-parent {
+  float: right;
+  margin: 22px -25px 0 0;
+  fill:#212529;
+}
+
+.flag-child {
+  float: right;
+  margin: -5px 10px 0 0;
+  fill:#505050;
+}
 .news {}
 
 .news p {}
