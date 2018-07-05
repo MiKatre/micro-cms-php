@@ -1,6 +1,6 @@
 <?php 
 
-require_once("manager/Manager.php");
+require_once("model/manager/Manager.php");
 require_once("model/Post.php");
 
 

@@ -1,8 +1,8 @@
 <?php
-require_once('manager/CommentManager.php');
-require_once('manager/PostManager.php');
+require_once('model/manager/CommentManager.php');
+require_once('model/manager/PostManager.php');
 
 
 function showLogin(){
-  require('view/backend/login.php');
+  require('view/backend/loginView.php');
 }
