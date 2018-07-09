@@ -1,3 +1,4 @@
+<?php setlocale(LC_TIME, "fr_FR");?>
 <?php $title="Tableau de bord" ?>
 
 <?php ob_start() ?>
@@ -90,14 +91,13 @@
 
             <?php 
               foreach($posts as $post) { 
-                var_dump($post->status());
               if($post->status() != 2) {
             ?>
               <tr>
               <td><?= $post->id() ?></td>
               <td><?= $post->title() ?></td>
               <td><?= $post->status() ?></td>
-              <td><?= $post->date() ?></td>
+              <td><?= strftime("%A %d %B %Y", strtotime($post->date())) ?></td>
 
               <td>
               <div class="btn-group mr-2">
