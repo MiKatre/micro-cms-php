@@ -35,7 +35,7 @@
     </p>
 </div>
 
-<h2 class="my-5 text-center font-weight-bold">Commentaires</h2>
+<h2 class="my-5 text-center font-weight-bold"> <span> <?= sizeof($comments) ?> </span> Commentaires</h2>
 
 <?php
 foreach($comments as $comment){
@@ -48,7 +48,7 @@ foreach($comments as $comment){
         <a href="<?= $currentURL . '&amp;responseId=' . $comment->id() ?>#addComment">
             <span class="response icon"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 9V5l-7 7 7 7v-4.1c5 0 8.5 1.6 11 5.1-1-5-4-10-11-11z"/></svg> </span>							
         </a>
-        <a href="index.php?action=flagComment&amp;commentId=<?= $comment->id() ?>&amp;postId=<?= $post->id() ?>" method="post" class="m-sm-5 ">
+        <a href="index.php?action=flagComment&amp;commentId=<?= $comment->id() ?>&amp;postId=<?= $post->id() ?>&amp;status=<?= $comment->status() ?>" method="post" class="m-sm-5 ">
             <span class="flag flag-parent icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/></svg> </span>
         </a>
     </p>
@@ -62,7 +62,7 @@ foreach($comments as $comment){
             <p>
                 <strong><?= htmlspecialchars($response->author()) ?></strong> 
                 <small> - <?= strftime("%A %d %B %Y", strtotime($response->date())) ?> </small>
-                <a href="index.php?action=flagComment&amp;commentId=<?= $response->id() ?>&amp;postId=<?= $post->id() ?>" method="post" class="m-sm-5 ">
+                <a href="index.php?action=flagComment&amp;commentId=<?= $response->id() ?>&amp;postId=<?= $post->id() ?>&amp;status=<?= $response->status() ?>" method="post" class="m-sm-5 ">
                     <span class="flag flag-child icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/></svg> </span>
                 </a>
             </p>

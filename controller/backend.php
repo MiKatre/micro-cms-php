@@ -74,7 +74,7 @@ function showDashboard() {
 
   // Ask model to fetch all Posts ordered by date and send back the objects.
   $postManager = new PostManager();
-  $comments = $commentManager->getAllComments();
+  $posts = $postManager->getPosts();
 
   // Ask model to fetch all comments ordered by date and send back the objects.
   $commentManager = new CommentManager();

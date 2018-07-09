@@ -88,37 +88,22 @@
           </thead>
           <tbody>
 
-            <tr>
-              <td>1</td>
-              <td>Introduction</td>
-              <td>Brouillon</td>
-              <td>Lundi 02 juillet 2018</td>
+            <?php 
+              foreach($posts as $post) { 
+                var_dump($post->status());
+              if($post->status() != 2) {
+            ?>
+              <tr>
+              <td><?= $post->id() ?></td>
+              <td><?= $post->title() ?></td>
+              <td><?= $post->status() ?></td>
+              <td><?= $post->date() ?></td>
+
               <td>
               <div class="btn-group mr-2">
                 <button class="btn btn-sm btn-outline-success">Publier</button>
                 <button class="btn btn-sm btn-outline-secondary">Modifier</button>
                 <button class="btn btn-sm btn-outline-danger">Supprimer</button>
-              </div>
-              </td>
-            </tr>
-            <?php 
-              foreach($posts as $post) { 
-              if($comment->flagged()) {
-            ?>
-              <tr>
-              <td><?= $comment->id() ?></td>
-              <td><?= $comment->title() ?></td>
-              <td><?= $comment->state() ?></td>
-              <td><?= $comment->date() ?></td>
-
-              <td>
-              <div class="btn-group mr-2">
-                <a href="index.php?action=updateComment&amp;commentId=<?= $comment->id() ?>&amp;status=1" class="btn btn-sm btn-outline-success">
-                  Autoriser
-                </a>
-                <a href="index.php?action=updateComment&amp;commentId=<?= $comment->id() ?>&amp;status=2" class="btn btn-sm btn-outline-danger">
-                  Modérer
-                </a>
               </div>
               </td>
             </tr>

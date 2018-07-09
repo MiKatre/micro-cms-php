@@ -69,9 +69,9 @@ class Post {
     }
     $this->_date = $date;
   }
-  public function setStatus(bool $status){
-    if (!is_bool($status)) {
-      trigger_error('Wrong type (status). Must be a boolean', E_USER_WARNING);
+  public function setStatus(int $status){
+    if (!is_int($status)) {
+      trigger_error('Wrong type (status). Must be an int', E_USER_WARNING);
     }
     $this->_status = $status;
   }
