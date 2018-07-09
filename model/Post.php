@@ -7,6 +7,11 @@ class Post {
           $_date,
           $_status;
 
+  const DRAFT = 0;
+  const PUBLISHED = 1;
+  const DELETED = 2;
+
+
   public function __construct(array $data = null) {
     if (!empty($data)) {
       $this->hydrate($data);
@@ -70,8 +75,8 @@ class Post {
     $this->_date = $date;
   }
   public function setStatus(int $status){
-    if (!is_int($status)) {
-      trigger_error('Wrong type (status). Must be an int', E_USER_WARNING);
+    if (!in_array($status, [self::DRAFT, self::PUBLISHED, self::DELETED])) {
+      trigger_error('Wrong status', E_USER_WARNING);
     }
     $this->_status = $status;
   }
