@@ -1,7 +1,7 @@
 <?php $title='Page de connexion'; ?>
 
 <?php ob_start(); ?>
-<div class="mx-auto w-100 text-center">
+<div class="mx-auto w-100 text-center login-page">
   <form class="form-signin" action="index.php?action=login" method="POST">
       <?php 
           if(isset($_GET['errorMessage'])) {

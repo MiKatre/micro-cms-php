@@ -13,8 +13,19 @@ class CommentManager extends Manager {
 
   public function getComments($postId) {
     $comments = [];
-    $query = $this->_db->prepare('SELECT id,author,content,responseId,date FROM comment WHERE postId = ? AND approved = 1 ORDER BY date DESC');
+    $query = $this->_db->prepare('SELECT * FROM comment WHERE postId = ? AND status < 2 ORDER BY date DESC');
     $query->execute(array($postId));
+  
+    while($commentData = $query->fetch()){
+      $comments[] = new Comment($commentData);
+    }
+
+    return $comments;
+  }
+
+  public function getAllComments() {
+    $comments = [];
+    $query = $this->_db->query('SELECT * FROM comment ORDER BY date DESC');
   
     while($commentData = $query->fetch()){
       $comments[] = new Comment($commentData);
@@ -30,9 +41,17 @@ class CommentManager extends Manager {
     return $affectedLines;
   }
 
+  public function status($commentId, $status){
+    $comment = $this->_db->prepare('UPDATE comment SET status = ?, flagged = 0 WHERE id = ?');
+    $affectedLines = $comment->execute(array($status, $commentId));
+
+    // throw new Exception('commentId = ' . $commentId . 'status = ' . $status);
+
+    return $affectedLines;
+  }
+
   public function flag($commentId) {
     $comment = $this->_db->prepare('UPDATE comment SET flagged = 1 WHERE id = ?');
-
     $affectedLines = $comment->execute(array($commentId));
 
     return $affectedLines;

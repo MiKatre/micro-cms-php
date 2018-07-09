@@ -7,7 +7,8 @@ class Comment {
           $_email,
           $_date,
           $_responseId,
-          $_approved;
+          $_flagged,
+          $_status;
 
 
   public function __construct($data = null){
@@ -34,7 +35,8 @@ class Comment {
   public function email(){return $this->_email;}
   public function date(){return $this->_date;}
   public function responseId(){return $this->_responseId;}
-  public function approved(){return $this->_approved;}
+  public function status(){return $this->_status;}
+  public function flagged(){return $this->_flagged;}
 
   // setter methods
   public function setId($id){
@@ -91,8 +93,11 @@ class Comment {
       return;
     }
   }
-  public function setApproved($approved){
-    $this->_approved = $approved;
+  public function setStatus($status){
+    $this->_status = $status;
+  }
+  public function setFlagged($flagged){
+    $this->_flagged = $flagged;
   }
 }
 

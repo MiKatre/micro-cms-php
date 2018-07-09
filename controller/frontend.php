@@ -35,14 +35,22 @@ function addComment($postId, $author, $email, $content, $responseId) {
   }
 }
 
-function flagComment($commentId, $postId) {
+function flagComment($commentId, $postId, $status) {
   $commentManager = new CommentManager();
-  $affectedLines = $commentManager->flag($commentId);
 
-  if ($affectedLines == false) {
-    die('impossible de signaler le commentaire !');
-    throw new Exception('impossible de signaler le commentaire!');
+  $status = (int) $status;
+
+  if ($status == 0) {
+    $affectedLines = $commentManager->flag($commentId);
+  
+    if ($affectedLines == false) {
+      die('impossible de signaler le commentaire !');
+      throw new Exception('impossible de signaler le commentaire!');
+    } else {
+      header('Location:  index.php?action=post&id=' . $postId .'&successMessage=Le commentaire a été signalé');
+    }
   } else {
-    header('Location:  index.php?action=post&id=' . $postId .'&successMessage=Le commentaire a été signalé');
+    header('Location:  index.php?action=post&id=' . $postId .'&successMessage=Le commentaire a déjà été signalé');
   }
+
 }

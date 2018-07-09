@@ -28,8 +28,8 @@ try {
       }
     }
     elseif ($_GET['action'] == 'flagComment') {
-      if (isset($_GET['commentId']) && isset($_GET['postId']) && $_GET['commentId'] > 0 &&  $_GET['postId'] > 0 ){
-        flagComment($_GET['commentId'], $_GET['postId']);
+      if (isset($_GET['commentId']) && isset($_GET['postId']) && isset($_GET['status']) && $_GET['commentId'] > 0 &&  $_GET['postId'] > 0 ){
+        flagComment($_GET['commentId'], $_GET['postId'], $_GET['status'] );
       } else {
         throw new Exception('Impossible de signaler ce commentaire');
       }
@@ -48,6 +48,17 @@ try {
       } else {
         throw new Exception('You should provide both an email and a passord');
       }
+    }
+    elseif ($_GET['action'] == 'showDashboard') {
+      showDashboard();
+    }
+    elseif ($_GET['action'] == 'updateComment') {
+      if (isset($_GET['commentId']) && isset($_GET['status'])) {
+        updateComment($_GET['commentId'], $_GET['status']);
+      }
+    }
+    elseif ($_GET['action'] == 'logout') {
+      logout();
     }
   } else {
     listPosts();

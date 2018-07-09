@@ -5,7 +5,7 @@ class Post {
           $_title,
           $_content,
           $_date,
-          $_published;
+          $_status;
 
   public function __construct(array $data = null) {
     if (!empty($data)) {
@@ -27,7 +27,7 @@ class Post {
   public function id(){return $this->_id;}
   public function title(){return $this->_title;}
   public function content(){return $this->_content;}
-  public function published(){return $this->_published;}
+  public function status(){return $this->_status;}
   public function date(){return $this->_date;}
   public function excerpt($startPos = 0, $maxLength= 134){
     $str =$this->_content;
@@ -69,10 +69,10 @@ class Post {
     }
     $this->_date = $date;
   }
-  public function setPublished(bool $published){
-    if (!is_bool($published)) {
-      trigger_error('Wrong type (published). Must be a boolean', E_USER_WARNING);
+  public function setStatus(bool $status){
+    if (!is_bool($status)) {
+      trigger_error('Wrong type (status). Must be a boolean', E_USER_WARNING);
     }
-    $this->_published = $published;
+    $this->_status = $status;
   }
 }
