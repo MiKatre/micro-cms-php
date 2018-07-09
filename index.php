@@ -57,6 +57,13 @@ try {
         updateComment($_GET['commentId'], $_GET['status']);
       }
     }
+    elseif ($_GET['action'] == 'updatePost') {
+      if (isset($_GET['status']) && isset($_GET['postId']) &&  $_GET['postId'] > 0 ){
+        updatePost($_GET['postId'], $_GET['status'] );
+      } else {
+        throw new Exception('Impossible de publier cet article');
+      }
+    }
     elseif ($_GET['action'] == 'logout') {
       logout();
     }

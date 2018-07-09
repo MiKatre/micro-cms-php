@@ -12,9 +12,14 @@ class PostManager extends Manager{
     $this->_db = $db;
   }
 
-  public function getPosts() {
+  public function getPosts($status = 1) {
     $posts = [];
-    $query = $this->_db->query('SELECT id,title,content,status,date FROM post WHERE status = 1 ORDER BY id DESC LIMIT 5');
+    if (is_int($status)) {
+      $query = $this->_db->prepare('SELECT id,title,content,status,date FROM post WHERE status = ? ORDER BY id DESC LIMIT 5');
+      $query->execute(array($status));
+    } else {
+      $query = $this->_db->query('SELECT id,title,content,status,date FROM post ORDER BY id DESC LIMIT 5');
+    }
     
     while ($postData = $query->fetch()) {
       $posts[] = new Post($postData);
@@ -30,7 +35,13 @@ class PostManager extends Manager{
     return new Post($postData);
   }
   
+  public function update($id, $status){
+    $post = $this->_db->prepare('UPDATE post SET status = ? WHERE id = ?');
+    $affectedLines = $post->execute(array($status, $id));
+
+    return $affectedLines;
+  }
+
   public function add(Post $post){}
-  public function update(Post $post){}
   public function delete(Post $post){}
 }

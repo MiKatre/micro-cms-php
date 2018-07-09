@@ -23,11 +23,9 @@ function login($email, $password, $rememberMe = false) {
     header('Location:  index.php?action=showLogin&errorMessage=Mauvais identifiant ou mot de passe !');
     throw new Exception('Mauvais identifiant ou mot de passe');
   }
-  
-  $user = new User($userData);
-  
-  $isUser = password_verify($password, $user->hash());
 
+  $user = new User($userData);
+  $isUser = password_verify($password, $user->hash());
   
   if(!$isUser) {
     header('Location:  index.php?action=showLogin&errorMessage=Mauvais identifiant ou mot de passe !');
@@ -65,7 +63,6 @@ function logout() {
 }
 
 function showDashboard() {
- 
   session_start();
 
   if (!isset($_SESSION['name']) || empty($_SESSION['name'])) {
@@ -74,7 +71,8 @@ function showDashboard() {
 
   // Ask model to fetch all Posts ordered by date and send back the objects.
   $postManager = new PostManager();
-  $posts = $postManager->getPosts();
+  // Whatever non int value will return all posts
+  $posts = $postManager->getPosts('all'); 
 
   // Ask model to fetch all comments ordered by date and send back the objects.
   $commentManager = new CommentManager();
@@ -90,5 +88,15 @@ function updateComment($commentId, $status) {
     header('Location:  index.php?action=showDashboard&successMessage=Status du commentaire mis à jour !');
   } else {
     header('Location:  index.php?action=showDashboard&errorMessage=Impossible de mettre à jour le commentaire !');
+  }
+}
+
+function updatePost($id, $status) {
+  $postManager = new PostManager();
+  $isSuccessful = $postManager->update($id, $status);
+  if($isSuccessful) {
+    header('Location:  index.php?action=showDashboard&successMessage=Article publié!');
+  } else {
+    header('Location:  index.php?action=showDashboard&errorMessage=Impossible de publier l\'article !');
   }
 }

@@ -101,7 +101,15 @@
 
               <td>
               <div class="btn-group mr-2">
-                <button class="btn btn-sm btn-outline-success">Publier</button>
+                <?php if ($post->status() == 0) { ?>
+                <a href="index.php?action=updatePost&amp;postId=<?= $post->id() ?>&amp;status=1" class="btn btn-sm btn-outline-success">
+                Publier
+                </a>
+                <?php } elseif ($post->status() == 1) { ?>
+                <a href="index.php?action=updatePost&amp;postId=<?= $post->id() ?>&amp;status=0" class="btn btn-sm btn-outline-warning">
+                Dépublier
+                </a>
+                <?php } ?>
                 <button class="btn btn-sm btn-outline-secondary">Modifier</button>
                 <button class="btn btn-sm btn-outline-danger">Supprimer</button>
               </div>

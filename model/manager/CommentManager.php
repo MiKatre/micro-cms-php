@@ -45,8 +45,6 @@ class CommentManager extends Manager {
     $comment = $this->_db->prepare('UPDATE comment SET status = ?, flagged = 0 WHERE id = ?');
     $affectedLines = $comment->execute(array($status, $commentId));
 
-    // throw new Exception('commentId = ' . $commentId . 'status = ' . $status);
-
     return $affectedLines;
   }
 
