@@ -92,11 +92,12 @@
             <?php 
               foreach($posts as $post) { 
               if($post->status() != 2) {
+                $status = ($post->status() == 0 ? 'Brouillon' : 'Publié' )
             ?>
               <tr>
               <td><?= $post->id() ?></td>
               <td><?= $post->title() ?></td>
-              <td><?= $post->status() ?></td>
+              <td><?= $status ?></td>
               <td><?= strftime("%A %d %B %Y", strtotime($post->date())) ?></td>
 
               <td>
@@ -111,7 +112,11 @@
                 </a>
                 <?php } ?>
                 <button class="btn btn-sm btn-outline-secondary">Modifier</button>
-                <button class="btn btn-sm btn-outline-danger">Supprimer</button>
+                <?php if ($post->status() == 0) { ?>
+                <a href="index.php?action=updatePost&amp;postId=<?= $post->id() ?>&amp;status=2" class="btn btn-sm btn-outline-danger">
+                Supprimer
+                </a>
+                <?php } ?>
               </div>
               </td>
             </tr>
