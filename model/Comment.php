@@ -10,6 +10,9 @@ class Comment {
           $_flagged,
           $_status;
 
+  const PUBLISHED = 0;
+  const APPROVED = 1;
+  const MODERATED = 2;
 
   public function __construct($data = null){
     if(!empty($data)) {
@@ -93,7 +96,11 @@ class Comment {
       return;
     }
   }
-  public function setStatus($status){
+  public function setStatus(int $status){
+    if(!in_array($status, [self::PUBLISHED, self::APPROVED, self::MODERATED])) {
+      trigger_error('Wrong Status', E_USER_WARNING);
+      return;
+    }
     $this->_status = $status;
   }
   public function setFlagged($flagged){
