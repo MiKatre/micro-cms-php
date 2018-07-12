@@ -49,3 +49,40 @@ h3 a {
 
 .news p {}
 
+
+blockquote{
+  font-size: 1.4em;
+  width:60%;
+  margin:50px 0;
+  font-family:Open Sans;
+  width: 100%;
+  font-style:italic;
+  color: #555555;
+  padding:1.2em 30px 1.2em 75px;
+  border-left:8px solid rgb(29, 29, 29) ;
+  line-height:1.6;
+  position: relative;
+  background:#EDEDED;
+}
+
+blockquote::before{
+  font-family:Arial;
+  content: "\201C";
+  color:rgb(84, 90, 88);
+  font-size:4em;
+  position: absolute;
+  left: 10px;
+  top:-10px;
+}
+
+blockquote::after{
+  content: '';
+}
+
+blockquote span{
+  display:block;
+  color:#333333;
+  font-style: normal;
+  font-weight: bold;
+  margin-top:1em;
+}
