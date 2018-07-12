@@ -53,7 +53,11 @@ try {
       showDashboard();
     }
     elseif ($_GET['action'] == 'showDashboardPosts') {
-      showPosts();
+      if(isset($_GET['page'])) {
+        showPaginatedPosts($_GET['page']);
+      } else {
+        showPaginatedPosts();
+      }
     }
     elseif ($_GET['action'] == 'showDashboardComments') {
       if(isset($_GET['page'])) {

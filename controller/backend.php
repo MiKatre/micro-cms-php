@@ -115,6 +115,25 @@ function showPaginatedComments($currentPage = 1) {
   require('view/backend/commentsView.php');
 }
 
+function showPaginatedPosts($currentPage = 1) {
+  $postManager = new PostManager();
+  $totalRows = $postManager->getTotalPosts();
+  $itemsPerPage = 20;
+  $totalPages = ceil($totalRows / $itemsPerPage);
+  $currentPage = min($currentPage, $totalPages);
+  $offset = ($currentPage - 1) * $itemsPerPage;
+
+  $start = $offset + 1;
+  $end = min(($offset + $itemsPerPage), $totalRows);
+
+  $paginationInfo = ' Page ' . $currentPage . ' sur ' . $totalPages . '.  Résultats ' . $start . ' à ' . $end . ' sur un total de ' . $totalRows . ' articles ';
+
+  $posts = $postManager->getAllPostsPaginated($itemsPerPage, $offset);
+
+  $url = 'index.php?action=showDashboardPosts';
+  require('view/backend/postsView.php');
+}
+
 function updateComment($commentId, $status, $url) {
   $commentManager = new CommentManager();
   $isSuccessful = $commentManager->status($commentId, $status);

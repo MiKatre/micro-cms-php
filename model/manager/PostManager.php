@@ -28,12 +28,34 @@ class PostManager extends Manager{
     return $posts;
   }
   
+  public function getTotalPosts(){
+    return $this->_db->query('SELECT COUNT(*) from post')->fetchColumn();
+  }
+
+  public function getAllPostsPaginated($itemsPerPage, $offset){
+  $query = $this->_db->prepare('SELECT * FROM post ORDER BY date LIMIT :limit OFFSET :offset');
+
+  // Bind the query params
+  $query->bindParam(':limit', $itemsPerPage, PDO::PARAM_INT);
+  $query->bindParam(':offset', $offset, PDO::PARAM_INT);
+  $query->execute();
+  
+  $posts = [];
+  
+  while($postData = $query->fetch()) {
+    $posts[] = new Post($postData);
+  }
+  
+  return $posts;
+}
+
   public function getPost($postId) {
     $req = $this->_db->prepare('SELECT id,title,content,date, status FROM post WHERE id = ?');
     $req->execute(array($postId));
     $postData = $req->fetch();
     return new Post($postData);
   }
+
   
   public function update($id, $status, $title = null, $content = null){
     // Publish, darft or delete

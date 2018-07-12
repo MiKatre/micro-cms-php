@@ -97,7 +97,11 @@
         </table>
       </div>
 
-
+      <?php
+        if ($totalPages > 1) {
+          include 'partials/pagination.php';
+        }
+      ?>
 
     </main>
   </div>
