@@ -10,12 +10,15 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Blog <span class="sr-only">(current)</span></a>
+    <ul class="navbar-nav d-flex">
+      <li class="nav-item ">
+        <a class="nav-link" href="#">Blog</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">À Propos <span class="sr-only">(current)</span></a>
+      <li class="nav-item ">
+        <a class="nav-link" href="#">À Propos</a>
+      </li>
+      <li class="nav-item ml-auto">
+        <a class="nav-link" target="_blank" rel="noopener" href="index.php?action=showLogin">Connexion</a>
       </li>
 
     </ul>
