@@ -35,8 +35,8 @@ foreach($posts as $post)
         </h3>
         
         <small class="text-muted"><?= strftime("%A %d %B %Y", strtotime($post->date()))?></small>
-        <p class="mt-1">
-            <?= htmlspecialchars($post->excerpt()) ?>
+        <p>
+        <?= strip_tags(htmlspecialchars_decode($post->excerpt())) ?>
         </p>
     </div>
 <?php } ?>

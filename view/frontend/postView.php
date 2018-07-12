@@ -26,13 +26,13 @@
     <small class="text-muted">
         <?= strftime("%A %d %B %Y", strtotime($post->date())) ?>
     </small>
-    <h2 >
+    <h2 class="font-weight-bold">
         <?= htmlspecialchars($post->title()) ?>
     </h2>
     
-    <p>
-        <?= nl2br(htmlspecialchars($post->content())) ?>
-    </p>
+ 
+        <?= htmlspecialchars_decode($post->content()) ?>
+   
 </div>
 
 <h2 class="my-5 text-center font-weight-bold"> <span> <?= sizeof($comments) ?> </span> Commentaires</h2>
