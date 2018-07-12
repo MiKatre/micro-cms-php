@@ -29,15 +29,23 @@ class PostManager extends Manager{
   }
   
   public function getPost($postId) {
-    $req = $this->_db->prepare('SELECT id,title,content,date FROM post WHERE id = ?');
+    $req = $this->_db->prepare('SELECT id,title,content,date, status FROM post WHERE id = ?');
     $req->execute(array($postId));
     $postData = $req->fetch();
     return new Post($postData);
   }
   
-  public function update($id, $status){
-    $post = $this->_db->prepare('UPDATE post SET status = ? WHERE id = ?');
-    $affectedLines = $post->execute(array($status, $id));
+  public function update($id, $status, $title = null, $content = null){
+    // Publish, darft or delete
+    if (empty($title) && empty($content)) {
+      $post = $this->_db->prepare('UPDATE post SET status = ? WHERE id = ?');
+      $affectedLines = $post->execute(array($status, $id));
+    }
+    // Update the content 
+    else if (!empty($title) && !empty($content)) {
+      $post = $this->_db->prepare('UPDATE post SET title = ?, content = ? WHERE id = ?');
+      $affectedLines = $post->execute(array($title, $content, $id));
+    }
 
     return $affectedLines;
   }

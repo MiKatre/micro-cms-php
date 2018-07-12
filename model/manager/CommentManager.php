@@ -56,4 +56,66 @@ class CommentManager extends Manager {
   }
 
   public function delete(Comment $comment){}
+  
+  public function getAllCommentsWithPagination(){
+    $totalRows = $this->_db->query('SELECT COUNT(*) from comment')->fetchColumn();
+    $itemsPerPage = 30;
+    $totalPages = ceil($totalRows / $itemsPerPage);
+
+    $currentPage = min($totalPages, filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT, array(
+      'options' =>array(
+        'default'   => 1,
+        'min_range' => 1,
+      ),
+    )));
+    
+    // Calculate the offset for the query
+    $offset = ($currentPage - 1)  * $totalPages;
+
+    // Some information to display to the user
+    $start = $offset + 1;
+    $end = min(($offset + $itemsPerPage), $totalRows);
+    $prevlink = ($currentPage > 1) ? '<a href="?page=1" title="First page">&laquo;</a> <a href="?page=' . ($currentPage - 1) . '" title="Previous page">&lsaquo;</a>' : '<span class="disabled">&laquo;</span> <span class="disabled">&lsaquo;</span>';
+    
+    $nextlink = ($currentPage < $totalPages) ? '<a href="?page=' . ($currentPage + 1) . '" title="Next page">&rsaquo;</a> <a href="?page=' . $totalPages . '" title="Last page">&raquo;</a>' : '<span class="disabled">&rsaquo;</span> <span class="disabled">&raquo;</span>';
+    
+    // Display the paging information
+    echo '<div id="paging"><p>', $prevlink, ' Page ', $currentPage, ' of ', $totalPages, ' pages, displaying ', $start, '-', $end, ' of ', $totalRows, ' results ', $nextlink, ' </p></div>';
+    
+    // Prepare the paged query
+    $result = $_db->prepare('
+        SELECT
+            *
+        FROM
+            table
+        ORDER BY
+            name
+        LIMIT
+            :limit
+        OFFSET
+            :offset
+    ');
+    
+    // Bind the query params
+    $result->bindParam(':limit', $itemsPerPage, PDO::PARAM_INT);
+    $result->bindParam(':offset', $offset, PDO::PARAM_INT);
+    $result->execute();
+    
+    // Do we have any results?
+    if ($result->rowCount() > 0) {
+        // Define how we want to fetch the results
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $iterator = new IteratorIterator($result);
+    
+        // Display the results
+        foreach ($iterator as $row) {
+            echo '<p>', $row['name'], '</p>';
+        }
+    
+    } else {
+        echo '<p>No results could be displayed.</p>';
+    }
+  }
 }
+
+

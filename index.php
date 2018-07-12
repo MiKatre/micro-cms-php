@@ -52,6 +52,12 @@ try {
     elseif ($_GET['action'] == 'showDashboard') {
       showDashboard();
     }
+    elseif ($_GET['action'] == 'showDashboardPosts') {
+      showPosts();
+    }
+    elseif ($_GET['action'] == 'showDashboardComments') {
+      showComments();
+    }
     elseif ($_GET['action'] == 'updateComment') {
       if (isset($_GET['commentId']) && isset($_GET['status'])) {
         updateComment($_GET['commentId'], $_GET['status']);
@@ -59,10 +65,15 @@ try {
     }
     elseif ($_GET['action'] == 'updatePost') {
       if (isset($_GET['status']) && isset($_GET['postId']) &&  $_GET['postId'] > 0 ){
-        updatePost($_GET['postId'], $_GET['status'] );
+        updatePostStatus($_GET['postId'], $_GET['status'], $_GET['return'] );
+      } elseif(isset($_GET['id']) && isset($_POST['title']) && isset($_POST['content'])) {
+        updatePostContent($_GET['id'], $_POST['title'], $_POST['content']);
       } else {
         throw new Exception('Impossible de publier cet article');
       }
+    }
+    elseif ($_GET['action'] == 'showEditor') {
+      showEditor($_GET['id']);
     }
     elseif ($_GET['action'] == 'logout') {
       logout();

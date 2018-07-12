@@ -2,48 +2,15 @@
 <?php $title="Tableau de bord" ?>
 
 <?php ob_start() ?>
-<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Tableau de bord</a>
-  <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
-  <ul class="navbar-nav px-3">
-    <li class="nav-item text-nowrap">
-      <a class="nav-link" href="index.php?action=logout">
-        Déconnexion
-      </a>
-    </li>
-  </ul>
-</nav>
-
-<div class="container-fluid">
-  <div class="row">
-    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-      <div class="sidebar-sticky">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">
-              <span data-feather="home"></span>
-              Tableau de bord <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file"></span>
-              Articles
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="message-square"></span>
-              Commentaires
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Tableau de bord</h1>
+        <div class="btn-group mr-2">
+          <a href="index.php?action=showEditor&amp;id=0" class="btn btn-sm btn-outline-secondary">
+            Nouvel article
+          </a>
+        </div>
       </div>
         <?php 
           if(isset($_GET['errorMessage'])) {
@@ -103,15 +70,21 @@
               <td>
               <div class="btn-group mr-2">
                 <?php if ($post->status() == 0) { ?>
-                <a href="index.php?action=updatePost&amp;postId=<?= $post->id() ?>&amp;status=1" class="btn btn-sm btn-outline-success">
+                <a href="index.php?action=updatePost&amp;postId=<?= $post->id() ?>&amp;status=1&amp;return=showDashboard" class="btn btn-sm btn-outline-success">
                 Publier
                 </a>
                 <?php } elseif ($post->status() == 1) { ?>
-                <a href="index.php?action=updatePost&amp;postId=<?= $post->id() ?>&amp;status=0" class="btn btn-sm btn-outline-warning">
+                <a href="index.php?action=updatePost&amp;postId=<?= $post->id() ?>&amp;status=0&amp;return=showDashboard" class="btn btn-sm btn-outline-warning">
                 Dépublier
                 </a>
                 <?php } ?>
-                <button class="btn btn-sm btn-outline-secondary">Modifier</button>
+
+                <a 
+                href="index.php?action=showEditor&amp;id=<?= $post->id() ?>"
+                class="btn btn-sm btn-outline-secondary">
+                  Modifier
+                </a>
+
                 <?php if ($post->status() == 0) { ?>
                 <a href="index.php?action=updatePost&amp;postId=<?= $post->id() ?>&amp;status=2" class="btn btn-sm btn-outline-danger">
                 Supprimer
@@ -173,77 +146,6 @@
     </main>
   </div>
 </div>
-
-<!-- Graphs -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-<!-- <script>
-  var ctx = document.getElementById("myChart");
-  var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      datasets: [{
-        data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
-        lineTension: 0,
-        backgroundColor: 'transparent',
-        borderColor: '#007bff',
-        borderWidth: 4,
-        pointBackgroundColor: '#007bff'
-      }]
-    },
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: false
-          }
-        }]
-      },
-      legend: {
-        display: false,
-      }
-    }
-  });
-</script> -->
-<!-- <script>
-var ctx = document.getElementById("myChart").getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ["Fevrier", "Mars", "Avril", "Mail", "Juin", "Juillet"],
-        datasets: [{
-            label: '# Commentaires au cours des 6 derniers mois',
-            data: [0, 0, 0, 0, 2, 7],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-    }
-});
-</script> -->
 
 <?php $content = ob_get_clean(); ?>
 
