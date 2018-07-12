@@ -23,25 +23,33 @@
     </ul>
   </nav>
 
+  <?= ($_GET['action'] == 'showDashboardPosts') ? 'active' : '' ?>
+
   <div class="container-fluid">
     <div class="row">
       <nav class="col-md-2 d-none d-md-block bg-light sidebar">
         <div class="sidebar-sticky">
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link active" href="index.php?action=showDashboard">
+              <a 
+              class="nav-link <?= ($_GET['action'] == 'showDashboard') ? 'active' : '' ?>" 
+              href="index.php?action=showDashboard">
                 <span data-feather="home"></span>
-                Tableau de bord <span class="sr-only">(current)</span>
+                Tableau de bord <span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.php?action=showDashboardPosts">
+              <a 
+              class="nav-link <?= ($_GET['action'] == 'showDashboardPosts') ? 'active' : '' ?>" 
+              href="index.php?action=showDashboardPosts">
                 <span data-feather="file"></span>
                 Articles
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.php?action=showDashboardComments">
+              <a 
+              class="nav-link <?= ($_GET['action'] == 'showDashboardComments') ? 'active' : '' ?>" 
+              href="index.php?action=showDashboardComments">
                 <span data-feather="message-square"></span>
                 Commentaires
               </a>

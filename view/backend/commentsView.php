@@ -4,13 +4,8 @@
 <?php ob_start() ?>
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Tableau de bord</h1>
-        <div class="btn-group mr-2">
-          <a href="index.php?action=showEditor&amp;id=0" class="btn btn-sm btn-outline-secondary">
-            Nouvel article
-          </a>
-        </div>
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-5 border-bottom">
+        <h1 class="h2">Commentaires</h1>
       </div>
         <?php 
           if(isset($_GET['errorMessage'])) {
@@ -38,7 +33,6 @@
         } 
         ?>
 
-      <h2> Commentaires </h2>
       <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
@@ -100,41 +94,11 @@
         </table>
       </div>
 
-
-
-
-<div class="d-flex justify-content-center">
-  <nav class="my-4 pt-2">
-    <ul class="pagination pagination-circle pg-purple mb-0">
-    
-        <!--Arrow left-->
-        <li class="page-item disabled">
-            <a class="page-link" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-            <span class="sr-only">Précédant</span>
-        </a>
-        </li>
-
-        <!--Numbers-->
-        <li class="page-item active"><a class="page-link">1</a></li>
-        <li class="page-item"><a class="page-link">2</a></li>
-        <li class="page-item"><a class="page-link">3</a></li>
-        <li class="page-item"><a class="page-link">4</a></li>
-        <li class="page-item"><a class="page-link">5</a></li>
-
-        <!--Arrow right-->
-        <li class="page-item">
-            <a class="page-link" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-            <span class="sr-only">Suivant</span>
-        </a>
-        </li>
-
-    </ul>
-  </nav>
-</div>
-
-
+      <?php
+      if ($totalPages > 1) {
+        include 'partials/pagination.php';
+      }
+      ?>
 
     </main>
   </div>

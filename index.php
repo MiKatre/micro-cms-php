@@ -56,7 +56,11 @@ try {
       showPosts();
     }
     elseif ($_GET['action'] == 'showDashboardComments') {
-      showComments();
+      if(isset($_GET['page'])) {
+        showPaginatedComments($_GET['page']);
+      } else {
+        showPaginatedComments();
+      }
     }
     elseif ($_GET['action'] == 'updateComment') {
       if (isset($_GET['commentId']) && isset($_GET['status'])) {

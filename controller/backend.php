@@ -95,16 +95,23 @@ function showPosts() {
   require('view/backend/postsView.php');
 }
 
-function showComments() {
-  session_start();
 
-  if (!isset($_SESSION['name']) || empty($_SESSION['name'])) {
-    header('Location:  index.php?action=showLogin&errorMessage=Vous devez vous connecter pour avoir accès à cette page !');
-  }
-
+function showPaginatedComments($currentPage = 1) {
   $commentManager = new CommentManager();
-  $comments = $commentManager->getAllComments();
+  $totalRows = $commentManager->getTotalComments();
+  $itemsPerPage = 30;
+  $totalPages = ceil($totalRows / $itemsPerPage);
+  $currentPage = min($currentPage, $totalPages);
+  $offset = ($currentPage - 1) * $itemsPerPage;
 
+  $start = $offset + 1;
+  $end = min(($offset + $itemsPerPage), $totalRows);
+
+  $paginationInfo = ' Page ' . $currentPage . ' sur ' . $totalPages . '.  Résultats ' . $start . ' à ' . $end . ' sur un total de ' . $totalRows . ' commentaires ';
+
+  $comments = $commentManager->getAllCommentsPaginated($itemsPerPage, $offset);
+
+  $url = 'index.php?action=showDashboardComments';
   require('view/backend/commentsView.php');
 }
 
