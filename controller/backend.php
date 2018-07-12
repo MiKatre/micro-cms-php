@@ -3,6 +3,7 @@ require_once('model/manager/CommentManager.php');
 require_once('model/manager/PostManager.php');
 require_once('model/manager/UserManager.php');
 require_once('model/User.php');
+require_once('model/Post.php');
 
 
 function showLogin(){
@@ -81,6 +82,32 @@ function showDashboard() {
   require('view/backend/dashboardView.php');
 }
 
+function showPosts() {
+  session_start();
+
+  if (!isset($_SESSION['name']) || empty($_SESSION['name'])) {
+    header('Location:  index.php?action=showLogin&errorMessage=Vous devez vous connecter pour avoir accès à cette page !');
+  }
+
+  $postManager = new PostManager();
+  $posts = $postManager->getPosts('all'); // A non int value
+
+  require('view/backend/postsView.php');
+}
+
+function showComments() {
+  session_start();
+
+  if (!isset($_SESSION['name']) || empty($_SESSION['name'])) {
+    header('Location:  index.php?action=showLogin&errorMessage=Vous devez vous connecter pour avoir accès à cette page !');
+  }
+
+  $commentManager = new CommentManager();
+  $comments = $commentManager->getAllComments();
+
+  require('view/backend/commentsView.php');
+}
+
 function updateComment($commentId, $status) {
   $commentManager = new CommentManager();
   $isSuccessful = $commentManager->status($commentId, $status);
@@ -91,12 +118,33 @@ function updateComment($commentId, $status) {
   }
 }
 
-function updatePost($id, $status) {
+function updatePostStatus($id, $status, $return) {
   $postManager = new PostManager();
-  $isSuccessful = $postManager->update($id, $status);
+  $isSuccessful = $postManager->update($id, $status, '', '');
   if($isSuccessful) {
-    header('Location:  index.php?action=showDashboard&successMessage=Article publié!');
+    header('Location:  index.php?action=' . $return . '&id=' . $id . '&successMessage=Status modifié !');
   } else {
-    header('Location:  index.php?action=showDashboard&errorMessage=Impossible de publier l\'article !');
+    header('Location:  index.php?action=' . $return . '&id=' . $id . '&errorMessage=Impossible de modifier le status de l\'article !');
   }
 }
+
+function updatePostContent($id, $title, $content) {
+  $postManager = new PostManager();
+  $isSuccessful = $postManager->update($id, '', $title, htmlspecialchars($content));
+  if($isSuccessful) {
+    header('Location:  index.php?action=showEditor&id=' . $id . '&successMessage=Article sauvegardé !');
+  } else {
+    header('Location:  index.php?action=showEditor&id=' . $id .'&errorMessage=Impossible de sauvegarder l\'article !');
+  }
+}
+
+function showEditor($id) {
+  if($id > 0){
+    $postManager = new PostManager();
+    $post = $postManager->getPost($_GET['id']);
+  } else {
+    $post = new Post(["title" => "Nouveau", "content" =>"<h1>Hello world</h1>"]);
+  }
+  require('view/backend/editorView.php');
+}
+
