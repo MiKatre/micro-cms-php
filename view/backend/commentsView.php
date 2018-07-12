@@ -70,18 +70,18 @@
               <td>
               <div class="btn-group mr-2">
               <?php if ($status == 'modéré') { ?>
-                <a href="index.php?action=updateComment&amp;commentId=<?= $comment->id() ?>&amp;status=1" class="btn btn-sm btn-outline-secondary">
+                <a href="index.php?action=updateComment&amp;commentId=<?= $comment->id() ?>&amp;status=1&amp;url=<?= rawurlencode($url) ?>" class="btn btn-sm btn-outline-secondary">
                   Approuver
                 </a>
               <?php } elseif($status == 'approuvé' ) { ?>
-                <a href="index.php?action=updateComment&amp;commentId=<?= $comment->id() ?>&amp;status=2" class="btn btn-sm btn-outline-secondary">
+                <a href="index.php?action=updateComment&amp;commentId=<?= $comment->id() ?>&amp;status=2&amp;url=<?= rawurlencode($url) ?>" class="btn btn-sm btn-outline-secondary">
                   Modérer
                 </a>
               <?php } else { ?>
-                <a href="index.php?action=updateComment&amp;commentId=<?= $comment->id() ?>&amp;status=1" class="btn btn-sm btn-outline-success">
+                <a href="index.php?action=updateComment&amp;commentId=<?= $comment->id() ?>&amp;status=1&amp;url=<?= rawurlencode($url) ?>" class="btn btn-sm btn-outline-success">
                   Approuver
                 </a>
-                <a href="index.php?action=updateComment&amp;commentId=<?= $comment->id() ?>&amp;status=2" class="btn btn-sm btn-outline-danger">
+                <a href="index.php?action=updateComment&amp;commentId=<?= $comment->id() ?>&amp;status=2&amp;url=<?= rawurlencode($url) ?>" class="btn btn-sm btn-outline-danger">
                   Modérer
                 </a>
               <?php }  ?>

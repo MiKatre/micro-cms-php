@@ -115,13 +115,13 @@ function showPaginatedComments($currentPage = 1) {
   require('view/backend/commentsView.php');
 }
 
-function updateComment($commentId, $status) {
+function updateComment($commentId, $status, $url) {
   $commentManager = new CommentManager();
   $isSuccessful = $commentManager->status($commentId, $status);
   if($isSuccessful) {
-    header('Location:  index.php?action=showDashboard&successMessage=Status du commentaire mis à jour !');
+    header('Location:  ' . $url . '&successMessage=Status du commentaire mis à jour !');
   } else {
-    header('Location:  index.php?action=showDashboard&errorMessage=Impossible de mettre à jour le commentaire !');
+    header('Location:  ' . $url . '&errorMessage=Impossible de mettre à jour le commentaire !');
   }
 }
 
@@ -138,6 +138,16 @@ function updatePostStatus($id, $status, $return) {
 function updatePostContent($id, $title, $content) {
   $postManager = new PostManager();
   $isSuccessful = $postManager->update($id, '', $title, htmlspecialchars($content));
+  if($isSuccessful) {
+    header('Location:  index.php?action=showEditor&id=' . $id . '&successMessage=Article sauvegardé !');
+  } else {
+    header('Location:  index.php?action=showEditor&id=' . $id .'&errorMessage=Impossible de sauvegarder l\'article !');
+  }
+}
+
+function addPost($title, $content) {
+  $postManager = new PostManager();
+  $isSuccessful = $postManager->add($title, htmlspecialchars($content));
   if($isSuccessful) {
     header('Location:  index.php?action=showEditor&id=' . $id . '&successMessage=Article sauvegardé !');
   } else {

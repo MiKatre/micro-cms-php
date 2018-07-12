@@ -50,6 +50,12 @@ class PostManager extends Manager{
     return $affectedLines;
   }
 
-  public function add(Post $post){}
+  public function add($title, $content){
+    $post = $this->_db->prepare('INSERT INTO post (title, content) VALUES(?,?)');
+    $affectedLines = $post->execute(array($title, $content));
+    
+    return $affectedLines;
+  }
+
   public function delete(Post $post){}
 }
