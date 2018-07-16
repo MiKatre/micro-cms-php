@@ -9,9 +9,37 @@
         
     <body>
 
-        <div id="main" class="container">
+        <div id="" class="container-fluid">
             <div class="row">
-                <div class="mx-2">
+                <div class="w-100">
+                    <div class="header">
+                        <a href="index.php">
+                            <h1 class="font-weight-bold">Jean Forteroche</h1>
+                            <h4 class="text-muted">Billet simple pour l'Alaska</h4>
+                        </a>
+                    </div>
+
+                    <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 sticky-top">
+                        <a class="navbar-brand" href="index.php">Accueil</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav d-flex">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#">Blog</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#">À Propos</a>
+                            </li>
+                            <li class="nav-item ml-auto">
+                                <a class="nav-link" target="_blank" rel="noopener" href="index.php?action=showLogin">Connexion</a>
+                            </li>
+
+                            </ul>
+                        </div>
+                    </nav>
+
                     <?= $content ?>
                 </div>
             </div>

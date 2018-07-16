@@ -1,48 +1,86 @@
 <?php setlocale(LC_TIME, "fr_FR");?>
 <?php $title = 'Blog de Jean Forteroche'; ?>
 <?php ob_start(); ?>
-<h1 class="font-weight-bold">Jean Forteroche</h1>
-<h4 class="text-muted">Billet simple pour l'Alaska</h4>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Accueil</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav d-flex">
-      <li class="nav-item ">
-        <a class="nav-link" href="#">Blog</a>
-      </li>
-      <li class="nav-item ">
-        <a class="nav-link" href="#">À Propos</a>
-      </li>
-      <li class="nav-item ml-auto">
-        <a class="nav-link" target="_blank" rel="noopener" href="index.php?action=showLogin">Connexion</a>
-      </li>
 
-    </ul>
-  </div>
-</nav>
-<p class="lead mt-3">Derniers articles :</p>
+<div id="main">
 
-<?php
-foreach($posts as $post)
-{
-?>
-    <div class="news">
-        <h3 class="mb-0">
-            <a href="index.php?action=post&amp;id=<?= $post->id(); ?>">
-                <?= htmlspecialchars($post->title()) ?>
-            </a>
-        </h3>
-        
-        <small class="text-muted"><?= strftime("%A %d %B %Y", strtotime($post->date()))?></small>
-        <p>
-        <?= strip_tags(htmlspecialchars_decode($post->excerpt())) ?>
-        </p>
+<h1 id="accueil">Derniers Articles</h1>
+
+<div id="carouselExampleIndicators" class="carousel slide rounded mt-5" >
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+
+    <div class="carousel-item active">
+      <img class="d-block w-100 rounded" src="static/img/alaska-1.jpg" alt="First slide">
+      <a href="index.php?action=post&id=1">
+        <div class="carousel-caption d-none d-md-block">
+          <p>Billet Simple pour l'alaska</p>
+        </div>
+      </a>
     </div>
-<?php } ?>
+
+    <div class="carousel-item rounded">
+      <img class="d-block w-100 rounded" src="static/img/alaska-3.jpg" alt="First slide">
+      <a href="index.php?action=post&id=2">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Chapitre 0</h5>
+          <p>Un aperclçu de l'Alaska</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="carousel-item rounded">
+      <img class="d-block w-100  rounded" src="static/img/alaska-2.jpg" alt="First slide">
+      <a href="index.php?action=post&id=3">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Chapitre Premier</h5>
+          <p>La grande arrivée</p>
+        </div>
+      </a>
+    </div>
+
+
+
+
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Précédant</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Suivant</span>
+  </a>
+</div>
+
+  <p class="lead mt-3"> 5 derniers articles :</p>
+
+  <?php
+  foreach($posts as $post)
+  {
+  ?>
+      <div class="news">
+          <h3 class="mb-0">
+              <a href="index.php?action=post&amp;id=<?= $post->id(); ?>">
+                  <?= htmlspecialchars($post->title()) ?>
+              </a>
+          </h3>
+          
+          <small class="text-muted"><?= strftime("%A %d %B %Y", strtotime($post->date()))?></small>
+          <p>
+          <?= strip_tags(htmlspecialchars_decode($post->excerpt())) ?>
+          </p>
+      </div>
+  <?php } ?>
+
+  <a href="index.php?action=showBlog"><p class="lead mt-3">Voir plus &rarr;</p></a>
+</div>
+
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>
