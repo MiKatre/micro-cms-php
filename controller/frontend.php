@@ -20,6 +20,25 @@ function post() {
   require('view/frontend/postView.php');
 }
 
+function showBlog($currentPage = 1) {
+  $postManager = new PostManager();
+  $totalRows = $postManager->getTotalPosts();
+  $itemsPerPage = 5;
+  $totalPages = ceil($totalRows / $itemsPerPage);
+  $currentPage = min($currentPage, $totalPages);
+  $offset = ($currentPage - 1) * $itemsPerPage;
+
+  $start = $offset + 1;
+  $end = min(($offset + $itemsPerPage), $totalRows);
+
+  $paginationInfo = '<div class="text-muted small"> Page ' . $currentPage . '/' . $totalPages . '.  Articles ' . $start . ' à ' . $end . ' sur ' . $totalRows . ' </div> ';
+ 
+  $posts = $postManager->getAllPostsPaginated($itemsPerPage, $offset);
+
+  $url = 'index.php?action=showBlog';
+  require('view/frontend/blogView.php');
+}
+
 function addComment($postId, $author, $email, $content, $responseId) {
 
   $commentData = compact('postId', 'author', 'email', 'content', 'responseId');

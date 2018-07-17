@@ -1,8 +1,8 @@
-<div class="d-flex justify-content-center mt-3">
+<div class="d-flex justify-content-center mt-5">
   <?= $paginationInfo ?>
 </div>
 <div class="d-flex justify-content-center">
-  <nav class="my-4 pt-2">
+  <nav class="mb-4 pt-2">
     <ul class="pagination mb-0">
       <?php if($currentPage > 1) { ?>
         <li class="page-item">

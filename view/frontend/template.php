@@ -27,7 +27,7 @@
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav d-flex">
                                 <li class="nav-item ">
-                                    <a class="nav-link" href="#">Blog</a>
+                                    <a class="nav-link" href="index.php?action=showBlog">Blog</a>
                                 </li>
                                 <li class="nav-item ">
                                     <a class="nav-link" href="#">À Propos</a>
@@ -53,7 +53,7 @@
           <h5 class="text-light">Pages</h5>
           <ul class="list-unstyled text-small">
             <li><a class="text-muted" href="index.php">Accueil</a></li>
-            <li><a class="text-muted" href="#">Blog</a></li>
+            <li><a class="text-muted" href="index.php?action=showBlog">Blog</a></li>
           </ul>
         </div>
         <div class="col-sm-4">

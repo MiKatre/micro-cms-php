@@ -99,7 +99,7 @@
 
       <?php
         if ($totalPages > 1) {
-          include 'partials/pagination.php';
+          include 'view/partials/pagination.php';
         }
       ?>
 

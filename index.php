@@ -14,6 +14,13 @@ try {
         throw new Exception('Missing id');
       }
     }
+    elseif ($_GET['action'] == 'showBlog') {
+      if(isset($_GET['page'])) {
+        showBlog($_GET['page']);
+      } else {
+        showBlog();
+      }
+    }
     elseif ($_GET['action'] == 'addComment') {
       if (isset($_GET['id']) && $_GET['id'] > 0) {
         if (!empty($_POST['author']) && !empty($_POST['content'])&& !empty($_POST['email'])) {
