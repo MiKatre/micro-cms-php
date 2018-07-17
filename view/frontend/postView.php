@@ -5,7 +5,7 @@
 
 <?php $currentURL = 'index.php?action=post&amp;id=' . $post->id(); ?>
 
-<div id="main" class="mt-4">
+<div id="main" class="mt-4 px-3 pb-3">
 
     <?php 
         if(isset($_GET['successMessage'])) {

@@ -3,7 +3,7 @@
 <?php ob_start(); ?>
 
 
-<div id="main">
+<div id="main" class="px-3">
 
 <h1 id="accueil">Derniers Articles</h1>
 
@@ -61,8 +61,10 @@
   <p class="lead mt-3"> 5 derniers articles :</p>
 
   <?php
-  foreach($posts as $post)
-  {
+  $i = 0;
+  foreach($posts as $post) {
+    if($i < 5) {
+      $i++;
   ?>
       <div class="news">
           <h3 class="mb-0">
@@ -76,7 +78,7 @@
           <?= strip_tags(htmlspecialchars_decode($post->excerpt())) ?>
           </p>
       </div>
-  <?php } ?>
+  <?php }} ?>
 
   <a href="index.php?action=showBlog"><p class="lead mt-3">Voir plus &rarr;</p></a>
 </div>
