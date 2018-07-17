@@ -13,6 +13,12 @@ h3 a {
   padding: auto 5px;
 }
 
+.main-size {
+  max-width: 670px;
+  margin: auto;
+  padding: auto 5px;
+}
+
 .icon:hover {
   fill: #0056b3;
   cursor: pointer;
