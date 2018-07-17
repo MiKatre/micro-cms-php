@@ -30,11 +30,11 @@ class PostManager extends Manager{
   }
   
   public function getTotalPosts(){
-    return $this->_db->query('SELECT COUNT(*) from post')->fetchColumn();
+    return $this->_db->query('SELECT COUNT(*) FROM post WHERE status != 2')->fetchColumn();
   }
 
   public function getAllPostsPaginated($itemsPerPage, $offset){
-  $query = $this->_db->prepare('SELECT * FROM post ORDER BY date LIMIT :limit OFFSET :offset');
+  $query = $this->_db->prepare('SELECT * FROM post WHERE status != 2 ORDER BY date LIMIT :limit OFFSET :offset');
 
   // Bind the query params
   $query->bindParam(':limit', $itemsPerPage, PDO::PARAM_INT);
