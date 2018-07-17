@@ -30,7 +30,7 @@
                                     <a class="nav-link" href="index.php?action=showBlog">Blog</a>
                                 </li>
                                 <li class="nav-item ">
-                                    <a class="nav-link" href="#">À Propos</a>
+                                    <a class="nav-link" href="index.php?action=showAbout">À Propos</a>
                                 </li>
                             </ul>   
                         </div>
@@ -59,7 +59,7 @@
         <div class="col-sm-4">
           <h5 class="text-light">À Propos</h5>
           <ul class="list-unstyled text-small">
-            <li><a class="text-muted" href="#">À propos</a></li>
+            <li><a class="text-muted" href="index.php?action=showAbout">À propos</a></li>
           </ul>
         </div>
       </div>

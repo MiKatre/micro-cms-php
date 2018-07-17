@@ -21,6 +21,9 @@ try {
         showBlog();
       }
     }
+    elseif ($_GET['action'] == 'showAbout') {
+      showAbout();
+    }
     elseif ($_GET['action'] == 'addComment') {
       if (isset($_GET['id']) && $_GET['id'] > 0) {
         if (!empty($_POST['author']) && !empty($_POST['content'])&& !empty($_POST['email'])) {

@@ -20,6 +20,10 @@ function post() {
   require('view/frontend/postView.php');
 }
 
+function showAbout() {
+  require('view/frontend/aboutView.php');
+}
+
 function showBlog($currentPage = 1) {
   $postManager = new PostManager();
   $totalRows = $postManager->getTotalPosts();
