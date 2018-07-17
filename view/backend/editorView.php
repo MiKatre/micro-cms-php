@@ -47,11 +47,12 @@ tinymce.init({
         </div>';
     }
 } 
+echo $post->title();
 ?>
 
   <form method="post" action="index.php?action=updatePost&amp;id=<?= $post->id() ?>">
     <label for="title" class="h5">Titre</label>
-    <input type="text" name="title" id="title" class="form-control mb-4" value=<?= $post->title() ?>>
+    <input type="text" name="title" id="title" class="form-control mb-4" value="<?= $post->title() ?>">
     <label for="editor" class="h5">Article</label>
     <textarea id="editor" name="content">
     <?= $post->content() ?>

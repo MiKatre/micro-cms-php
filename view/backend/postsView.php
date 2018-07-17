@@ -68,11 +68,11 @@
               <td>
               <div class="btn-group mr-2">
                 <?php if ($post->status() == 0) { ?>
-                <a href="index.php?action=updatePost&amp;postId=<?= $post->id() ?>&amp;status=1&amp;return=showDashboard" class="btn btn-sm btn-outline-success">
+                <a href="index.php?action=updatePost&amp;postId=<?= $post->id() ?>&amp;status=1&amp;return=showDashboardPosts" class="btn btn-sm btn-outline-success">
                 Publier
                 </a>
                 <?php } elseif ($post->status() == 1) { ?>
-                <a href="index.php?action=updatePost&amp;postId=<?= $post->id() ?>&amp;status=0&amp;return=showDashboard" class="btn btn-sm btn-outline-warning">
+                <a href="index.php?action=updatePost&amp;postId=<?= $post->id() ?>&amp;status=0&amp;return=showDashboardPosts" class="btn btn-sm btn-outline-warning">
                 Dépublier
                 </a>
                 <?php } ?>
@@ -84,7 +84,7 @@
                 </a>
 
                 <?php if ($post->status() == 0) { ?>
-                <a href="index.php?action=updatePost&amp;postId=<?= $post->id() ?>&amp;status=2" class="btn btn-sm btn-outline-danger">
+                <a href="index.php?action=updatePost&amp;postId=<?= $post->id() ?>&amp;status=2&amp;return=showDashboardPosts" class="btn btn-sm btn-outline-danger">
                 Supprimer
                 </a>
                 <?php } ?>
