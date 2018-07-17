@@ -18,7 +18,8 @@ class PostManager extends Manager{
       $query = $this->_db->prepare('SELECT id,title,content,status,date FROM post WHERE status = ? ORDER BY id DESC LIMIT 5');
       $query->execute(array($status));
     } else {
-      $query = $this->_db->query('SELECT id,title,content,status,date FROM post ORDER BY id DESC LIMIT 5');
+      $query = $this->_db->prepare('SELECT id,title,content,status,date FROM post WHERE status != ? ORDER BY id DESC LIMIT 5');
+      $query->execute(array(2));
     }
     
     while ($postData = $query->fetch()) {
@@ -76,7 +77,11 @@ class PostManager extends Manager{
     $post = $this->_db->prepare('INSERT INTO post (title, content) VALUES(?,?)');
     $affectedLines = $post->execute(array($title, $content));
     
-    return $affectedLines;
+    if($affectedLines) {
+      return $this->_db->lastInsertId();
+    } else {
+      return false;
+    }
   }
 
   public function delete(Post $post){}

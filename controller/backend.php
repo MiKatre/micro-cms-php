@@ -166,11 +166,12 @@ function updatePostContent($id, $title, $content) {
 
 function addPost($title, $content) {
   $postManager = new PostManager();
-  $isSuccessful = $postManager->add($title, htmlspecialchars($content));
-  if($isSuccessful) {
-    header('Location:  index.php?action=showEditor&id=' . $id . '&successMessage=Article sauvegardé !');
+  $postId = $postManager->add($title, htmlspecialchars($content));
+  
+  if($postId) {
+    header('Location:  index.php?action=showEditor&id=' . $postId . '&successMessage=Article sauvegardé !');
   } else {
-    header('Location:  index.php?action=showEditor&id=' . $id .'&errorMessage=Impossible de sauvegarder l\'article !');
+    header('Location:  index.php?action=showEditor&id=' . $postId .'&errorMessage=Impossible de sauvegarder l\'article !');
   }
 }
 
