@@ -52,13 +52,17 @@ try {
       }
       break;
     case "showLogin":
-      showLogin();
+      $backendController = new BackendController();
+      $backendController->showLogin();
       break;
     case "login":
       if(isset($_POST['email']) && isset($_POST['password'])) {
         if(!empty($_POST['email']) && !empty($_POST['password'])) {
+          $backendController = new BackendController();
           $rememberMe = (isset($_POST['rememberMe']) ? true : false );
-          login($_POST['email'], $_POST['password'], $rememberMe);
+          
+          $backendController->login($_POST['email'], $_POST['password'], $rememberMe);
+        
         } else {
           throw new Exception('You should provide both an email and a passord');
         }
@@ -67,43 +71,50 @@ try {
       }
       break;
     case "showDashboard":
-      showDashboard();
+      $backendController = new BackendController();
+      $backendController->showDashboard();
       break;
     case "showDashboardPosts":
+      $backendController = new BackendController();
       if(isset($_GET['page'])) {
-        showPaginatedPosts($_GET['page']);
+        $backendController->showPaginatedPosts($_GET['page']);
       } else {
-        showPaginatedPosts();
+        $backendController->showPaginatedPosts();
       }
       break;
     case "showDashboardComments":
+      $backendController = new BackendController();
       if(isset($_GET['page'])) {
-        showPaginatedComments($_GET['page']);
+        $backendController->showPaginatedComments($_GET['page']);
       } else {
-        showPaginatedComments();
+        $backendController->showPaginatedComments();
       }
       break;
     case "updateComment":
       if (isset($_GET['commentId']) && isset($_GET['status']) && isset($_GET['url'])) {
-        updateComment($_GET['commentId'], $_GET['status'], $_GET['url']);
+        $backendController = new BackendController();
+        $backendController->updateComment($_GET['commentId'], $_GET['status'], $_GET['url']);
       }
       break;
     case "updatePost":
+      $backendController = new BackendController();
       if (isset($_GET['status']) && isset($_GET['postId']) &&  $_GET['postId'] > 0 ){
-        updatePostStatus($_GET['postId'], $_GET['status'], $_GET['return'] );
+        $backendController->updatePostStatus($_GET['postId'], $_GET['status'], $_GET['return'] );
       } elseif(isset($_GET['id']) && isset($_POST['title']) && isset($_POST['content']) && $_GET['id'] > 0) {
-        updatePostContent($_GET['id'], $_POST['title'], $_POST['content']);
+        $backendController->updatePostContent($_GET['id'], $_POST['title'], $_POST['content']);
       } elseif(isset($_POST['title']) && isset($_POST['content'])) {
-        addPost($_POST['title'], $_POST['content']);
+        $backendController->addPost($_POST['title'], $_POST['content']);
       } else {
         throw new Exception('Impossible de publier cet article');
       }
       break;
     case "showEditor":
-      showEditor($_GET['id']);
+      $backendController = new BackendController();
+      $backendController->showEditor($_GET['id']);
       break;
     case "logout":
-      logout();
+      $backendController = new BackendController();
+      $backendController->logout();
       break;
     default:
       $frontendController = new FrontendController; 
