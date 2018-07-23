@@ -17,7 +17,6 @@ tinymce.init({
   ],
   toolbar: 'insert | undo redo |  formatselect | bold italic | alignleft aligncenter alignright alignjustify blockquote | bullist numlist outdent indent | removeformat',
 });
-// tinymce.get('editor').getContent()
 </script>
 
 <div class="col-md-9 ml-sm-auto col-lg-10 px-4 mt-5">
@@ -47,7 +46,7 @@ tinymce.init({
         </div>';
     }
 } 
-echo $post->title();
+
 ?>
 
   <form method="post" action="index.php?action=updatePost&amp;id=<?= $post->id() ?>">
