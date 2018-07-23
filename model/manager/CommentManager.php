@@ -62,7 +62,7 @@ class CommentManager extends Manager {
   }
   
   public function getAllCommentsPaginated($itemsPerPage, $offset){
-    $query = $this->_db->prepare('SELECT * FROM comment ORDER BY date LIMIT :limit OFFSET :offset');
+    $query = $this->_db->prepare('SELECT * FROM comment ORDER BY date DESC LIMIT :limit OFFSET :offset');
 
     // Bind the query params
     $query->bindParam(':limit', $itemsPerPage, PDO::PARAM_INT);
