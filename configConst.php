@@ -1,4 +1,8 @@
 <?php
 
-const POSTS_PER_PAGE = 30;
-const COMMENTS_PER_PAGE = 30; 
+// Backend
+const POSTS_PER_PAGE_ON_DASHBOARD = 30;
+const COMMENTS_PER_PAGE_ON_DASHBOARD = 30; 
+
+// Frontend
+const POSTS_PER_PAGE_ON_BLOG= 5;
