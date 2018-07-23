@@ -4,6 +4,7 @@ require_once('model/manager/PostManager.php');
 require_once('model/manager/UserManager.php');
 require_once('model/User.php');
 require_once('model/Post.php');
+require_once('configConst.php');
 
 
 function showLogin(){
@@ -99,7 +100,7 @@ function showPosts() {
 function showPaginatedComments($currentPage = 1) {
   $commentManager = new CommentManager();
   $totalRows = $commentManager->getTotalComments();
-  $itemsPerPage = 30;
+  $itemsPerPage = COMMENTS_PER_PAGE_ON_DASHBOARD;
   $totalPages = ceil($totalRows / $itemsPerPage);
   $currentPage = min($currentPage, $totalPages);
   $offset = ($currentPage - 1) * $itemsPerPage;
@@ -118,7 +119,7 @@ function showPaginatedComments($currentPage = 1) {
 function showPaginatedPosts($currentPage = 1) {
   $postManager = new PostManager();
   $totalRows = $postManager->getTotalPosts();
-  $itemsPerPage = 5;
+  $itemsPerPage = POSTS_PER_PAGE_ON_DASHBOARD;
   $totalPages = ceil($totalRows / $itemsPerPage);
   $currentPage = min($currentPage, $totalPages);
   $offset = ($currentPage - 1) * $itemsPerPage;

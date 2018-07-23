@@ -48,7 +48,28 @@ class PostManager extends Manager{
   }
   
   return $posts;
-}
+  }
+
+  public function countPublishedPosts(){
+    return $this->_db->query('SELECT COUNT(*) FROM post WHERE status = 1')->fetchColumn();
+  }
+
+  public function getPublishedPostsPaginated($itemsPerPage, $offset){
+  $query = $this->_db->prepare('SELECT * FROM post WHERE status = 1 ORDER BY date LIMIT :limit OFFSET :offset');
+
+  // Bind the query params
+  $query->bindParam(':limit', $itemsPerPage, PDO::PARAM_INT);
+  $query->bindParam(':offset', $offset, PDO::PARAM_INT);
+  $query->execute();
+  
+  $posts = [];
+  
+  while($postData = $query->fetch()) {
+    $posts[] = new Post($postData);
+  }
+  
+  return $posts;
+  }
 
   public function getPost($postId) {
     $req = $this->_db->prepare('SELECT id,title,content,date, status FROM post WHERE id = ?');

@@ -2,6 +2,7 @@
 require_once('model/manager/PostManager.php');
 require_once('model/manager/CommentManager.php');
 require_once('model/Comment.php');
+require_once('configConst.php');
 
 function listPosts() {
   $postManager = new PostManager();
@@ -26,8 +27,8 @@ function showAbout() {
 
 function showBlog($currentPage = 1) {
   $postManager = new PostManager();
-  $totalRows = $postManager->getTotalPosts();
-  $itemsPerPage = 5;
+  $totalRows = $postManager->countPublishedPosts();
+  $itemsPerPage = POSTS_PER_PAGE_ON_BLOG;
   $totalPages = ceil($totalRows / $itemsPerPage);
   $currentPage = min($currentPage, $totalPages);
   $offset = ($currentPage - 1) * $itemsPerPage;
@@ -37,7 +38,7 @@ function showBlog($currentPage = 1) {
 
   $paginationInfo = '<div class="text-muted small"> Page ' . $currentPage . '/' . $totalPages . '.  Articles ' . $start . ' à ' . $end . ' sur ' . $totalRows . ' </div> ';
  
-  $posts = $postManager->getAllPostsPaginated($itemsPerPage, $offset);
+  $posts = $postManager->getPublishedPostsPaginated($itemsPerPage, $offset);
 
   $url = 'index.php?action=showBlog';
   require('view/frontend/blogView.php');
