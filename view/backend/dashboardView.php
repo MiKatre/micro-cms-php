@@ -5,7 +5,7 @@
 
 <?php $url='index.php?action=showDashboard' ?>
 
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 pt-5 mt-5 mt-sm-0">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Tableau de bord</h1>
         <div class="btn-group mr-2">
@@ -41,8 +41,6 @@
         ?>
 
   
-
-      <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
 
       <h2> Articles  </h2>
       <div class="table-responsive">
