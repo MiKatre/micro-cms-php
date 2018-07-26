@@ -9,6 +9,13 @@ require_once('configConst.php');
 class BackendController {
   public function showLogin(){
     session_start();
+
+    if (isset($_COOKIE['name']) && !empty($_COOKIE['name'])) {
+      $_SESSION['name'] = $_COOKIE['name'];
+      $_SESSION['email'] = $_COOKIE['email'];
+      $_SESSION['hash'] = $_COOKIE['hash'];
+    }
+
     if (isset($_SESSION['name']) && !empty($_SESSION['name'])) {
       header('Location:  index.php?action=showDashboard');
     }
@@ -55,10 +62,13 @@ class BackendController {
     $_SESSION = array();
     if (ini_get("session.use_cookies")) {
       $params = session_get_cookie_params();
-      setcookie(session_name(), '', time() - 42000,
+      setcookie(session_name(), '', time() - 365*24*3600,
           $params["path"], $params["domain"],
           $params["secure"], $params["httponly"]
       );
+      setcookie("name", "", time()-3600);
+      setcookie("email", "", time()-3600);
+      setcookie("hash", "", time()-3600);
     }
     session_destroy();
     header('Location:  index.php?');
