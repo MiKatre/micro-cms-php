@@ -105,5 +105,10 @@ class PostManager extends Manager{
     }
   }
 
-  public function delete(Post $post){}
+  public function delete($id){
+    $query = $this->_db->prepare('DELETE FROM post WHERE id = ?');
+    $affectedLines = $query->execute(array($id));
+
+    return $affectedLines;
+  }
 }

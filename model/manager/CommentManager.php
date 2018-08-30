@@ -55,7 +55,12 @@ class CommentManager extends Manager {
     return $affectedLines;
   }
 
-  public function delete(Comment $comment){}
+  public function delete($postId){
+    $query = $this->_db->prepare('DELETE FROM comment WHERE postId = ?');
+    $affectedLines = $query->execute(array($postId));
+
+    return $affectedLines;
+  }
  
   public function getTotalComments(){
     return $this->_db->query('SELECT COUNT(*) from comment')->fetchColumn();

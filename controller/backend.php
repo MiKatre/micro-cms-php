@@ -185,6 +185,24 @@ class BackendController {
       header('Location:  index.php?action=showEditor&id=' . $postId .'&errorMessage=Impossible de sauvegarder l\'article !');
     }
   }
+
+  public function deletePost($id, $return) {
+    $postManager = new PostManager();
+    $commentManager = new CommentManager();
+
+    $isSuccessful = $postManager->delete($id);
+    // If query is successful delete all associated comments
+    if($isSuccessful) {
+      $isCommentSuccessful = $commentManager->delete($id);
+      if ($isCommentSuccessful) {
+        header('Location:  index.php?action=' . $return . '&id=' . $id . '&successMessage=L\'article a été supprimé !');
+      } else {
+        header('Location:  index.php?action=' . $return . '&id=' . $id . '&errorMessage=Impossible de supprimer les commentaires associés à cet article.');
+      }
+    } else {
+      header('Location:  index.php?action=' . $return . '&id=' . $id . '&errorMessage=Impossible de supprimer cet article !');
+    }
+  }
   
   public function showEditor($id) {
     if($id > 0){

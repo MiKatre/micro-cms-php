@@ -84,7 +84,7 @@
                 </a>
 
                 <?php if ($post->status() == 0) { ?>
-                <a href="index.php?action=updatePost&amp;postId=<?= $post->id() ?>&amp;status=2&amp;return=showDashboardPosts" class="btn btn-sm btn-outline-danger">
+                <a href="index.php?action=deletePost&amp;postId=<?= $post->id() ?>&amp;return=showDashboardPosts" class="btn btn-sm btn-outline-danger">
                 Supprimer
                 </a>
                 <?php } ?>

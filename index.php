@@ -108,6 +108,12 @@ try {
         throw new Exception('Impossible de publier cet article');
       }
       break;
+    case "deletePost":
+      $backendController = new BackendController();
+      if (isset($_GET['postId']) &&  $_GET['postId'] > 0 ){
+        $backendController->deletePost($_GET['postId'], $_GET['return'] );
+      }
+      break;
     case "showEditor":
       $backendController = new BackendController();
       $backendController->showEditor($_GET['id']);
